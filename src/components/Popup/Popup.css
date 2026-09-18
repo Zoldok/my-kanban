@@ -1,0 +1,150 @@
+/* Базовые стили попапа */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+
+  /* Затемнение */
+  .popup__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #383838;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity .6s ease;
+  }
+  
+
+  
+
+/* Содержимое попапа */
+.popup__content {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    max-height: calc(100dvh - 70px);
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 16px;
+    pointer-events: auto;
+    padding: 20px;
+    gap: 20px;
+}
+  
+      
+/* Состояние открыто */
+.popup.open .popup__overlay {
+    opacity: 0.9;
+}
+    
+  /* Версия с центрированием */
+  .popup.popup_centered {
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .popup.popup_centered .popup__wrapper {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+    opacity: 0.3s ease;
+  }
+  
+  .popup.popup_centered.open .popup__wrapper {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+
+  
+  /* Контейнер с контентом */
+  .popup__wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    /* max-width: 539px; */
+    pointer-events: none;
+    transform: translateY(2000px);
+    transition: transform 0.9s ease;
+  }
+  
+  .size-popup{
+    max-width: 539px;
+  }
+  
+  .popup__title {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    color: #000;
+  }
+  
+  .popup__subtitle {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #999;
+    margin: 0;
+  }
+  
+   
+  .popup.open .popup__wrapper {
+    transform: translateY(0);
+  }
+
+  .popup-user{
+    width: 213px;
+  }
+
+  .popup__content.popup-user{
+    padding: 34px;
+    position: absolute;
+    top: 50px;
+    right: 40px;
+  }
+
+  .popup-user.popup-user__body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Адаптив для мобильных */
+  @media (max-width: 768px) {
+    .popup {
+      align-items: flex-end;
+    }
+  
+    .popup.popup_centered {
+      padding: 0;
+      align-items: flex-end;
+    }
+  
+    .popup__content {
+      max-height: calc(100dvh - 70px);
+    }
+  }
+
+
+  
+
+
+  
