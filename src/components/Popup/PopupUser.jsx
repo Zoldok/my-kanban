@@ -1,26 +1,24 @@
-import React from 'react';
+import Popup from './Popup';
+import './PopupUser.css';
 
-const PopupUser = () => {
+const PopupUser = ({ isOpen, onClose, onExitClick }) => {
   return (
-    <div class='pop-exit' id='popExit'>
-      <div class='pop-exit__container'>
-        <div class='pop-exit__block'>
-          <div class='pop-exit__ttl'>
-            <h2>Выйти из аккаунта?</h2>
-          </div>
-          <form class='pop-exit__form' id='formExit' action='#'>
-            <div class='pop-exit__form-group'>
-              <button class='pop-exit__exit-yes _hover01' id='exitYes'>
-                <a href='modal/signin.html'>Да, выйти</a>
-              </button>
-              <button class='pop-exit__exit-no _hover03' id='exitNo'>
-                <a href='main.html'>Нет, остаться</a>{' '}
-              </button>
-            </div>
-          </form>
+    <Popup isOpen={isOpen} onClose={onClose} className='popup-user size-popup'>
+      <div className='popup-user__body'>
+        <a href='#' className='pop-new-card__close' onClick={onClose}>
+          &#10006;
+        </a>
+        <p className='pop-user-set__name'>Ivan Ivanov</p>
+        <p className='pop-user-set__mail'>ivan.ivanov@gmail.com</p>
+        <div className='pop-user-set__theme'>
+          <p>Темная тема</p>
+          <input type='checkbox' className='checkbox' name='checkbox' />
         </div>
+        <button type='button' className='_hover03' onClick={onExitClick}>
+          Выйти
+        </button>
       </div>
-    </div>
+    </Popup>
   );
 };
 

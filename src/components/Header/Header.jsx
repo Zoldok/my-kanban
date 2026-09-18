@@ -1,31 +1,94 @@
+import { useState } from 'react';
+import PopupUser from '../Popup/PopupUser';
+import { usePopup } from '../../assets/hooks/usePopup';
+import PopupExit from '../Popup/PopupExit';
+import PopNewCard from '../Popup/PopNewCard';
+import Popup from '../Popup/Popup';
+
 const Header = () => {
+  const popupUser = usePopup();
+  const popupExit = usePopup();
+  const popupNewCard = usePopup();
+
+  // для нового попапа 1
+  const [isOpen, setIsOpen] = useState(false);
+  // для нового попапа 1 END
+
+  // Функция для открытия попапа выхода
+  const handleExitClick = () => {
+    popupUser.close(); // Закрываем PopupUser
+    popupExit.open(); // Открываем PopupExit
+  };
+
+  // Функция подтверждения выхода
+  const handleConfirmExit = () => {
+    console.log('Пользователь вышел');
+    // Здесь логика выхода
+    // например: logout(), redirect('/login')
+    popupExit.close();
+  };
+
   return (
-              <header class="header">
-                  <div class="container">
-                      <div class="header__block">
-                          <div class="header__logo _show _light">
-                              <a href="" target="_self"><img src="images/logo.png" alt="logo"/></a>
-                          </div>
-                          <div class="header__logo _dark">
-                              <a href="" target="_self"><img src="images/logo_dark.png" alt="logo"/></a>
-                          </div>
-                          <nav class="header__nav">
-                              <button class="header__btn-main-new _hover01" id="btnMainNew"><a href="#popNewCard">Создать новую задачу</a></button>
-                              <a href="#user-set-target" class="header__user _hover02">Ivan Ivanov</a>
-                              <div class="header__pop-user-set pop-user-set" id="user-set-target">
-                                  {/* <!-- <a href="">x</a> --> */}
-                                  <p class="pop-user-set__name">Ivan Ivanov</p>
-                                  <p class="pop-user-set__mail">ivan.ivanov@gmail.com</p>
-                                  <div class="pop-user-set__theme">
-                                      <p>Темная тема</p>
-                                      <input type="checkbox" class="checkbox" name="checkbox"/>
-                                  </div>
-                                  <button type="button" class="_hover03"><a href="#popExit">Выйти</a></button>
-                              </div>
-                          </nav>
-                      </div>
-                  </div>
-              </header>
+    <>
+      <header className='header'>
+        <div className='container'>
+          <div className='header__block'>
+            <div className='header__logo _show _light'>
+              <a href='' target='_self'>
+                <img src='images/logo.png' alt='logo' />
+              </a>
+            </div>
+            <div className='header__logo _dark'>
+              <a href='' target='_self'>
+                <img src='images/logo_dark.png' alt='logo' />
+              </a>
+            </div>
+
+            {/* <div onClick={() => setIsOpen(true)}>Popup</div> */}
+
+            {/*   // для нового попапа 1  */}
+            {/* <Popup
+              isOpen={isOpen}
+              onClose={() => setIsOpen(false)}
+              title='Личный кабинет'
+              subtitle='Укажите номер телефона. Мы отправим Вам одноразовый код для входа в Личный кабинет'
+            >
+              <div>
+                <p>Содержимое попапа</p>
+                <button onClick={() => setIsOpen(false)}>Закрыть</button>
+              </div>
+            </Popup> */}
+            {/* new popup   // для нового попапа 1 END */}
+
+            <nav className='header__nav'>
+              <button
+                className='header__btn-main-new _hover01'
+                onClick={popupNewCard.open}
+              >
+                <a onClick={popupNewCard.open}>Создать новую задачу</a>
+              </button>
+
+              <div className='header__user _hover02' onClick={popupUser.open}>
+                Ivan Ivanov
+              </div>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      <PopupUser
+        isOpen={popupUser.isOpen}
+        onClose={popupUser.close}
+        onExitClick={handleExitClick}
+      />
+      <PopupExit
+        isOpen={popupExit.isOpen}
+        onClose={popupExit.close}
+        onConfirm={handleConfirmExit}
+      />
+
+      <PopNewCard isOpen={popupNewCard.isOpen} onClose={popupNewCard.close} />
+    </>
   );
 };
 

@@ -1,26 +1,40 @@
 import React from 'react';
+import { usePopup } from '../../assets/hooks/usePopup';
+import PopBrowse from '../Popup/PopBrowse';
 
-const Card = () => {
+const themeClasses = {
+  Research: '_green',
+  'Web Design': '_orange',
+  Copywriting: '_purple',
+};
+
+const Card = ({ task }) => {
+  const popBrowse = usePopup();
+  console.log(task);
+  const { id, topic, title, date, status } = task;
+  const themeClass = themeClasses[topic] || '_gray'; // fallback на случай новой темы
+
   return (
-    <div class='cards__item'>
-      <div class='cards__card card'>
-        <div class='card__group'>
-          <div class='card__theme _orange'>
-            <p class='_orange'>Web Design</p>
+    <div className='cards__item'>
+      <div className='cards__card card'>
+        <div className='card__group'>
+          <div className={`card__theme ${themeClass}`}>
+            <p className={themeClass}>{topic}</p>
           </div>
-          <a href='#popBrowse' target='_self'>
-            <div class='card__btn'>
+          <a onClick={popBrowse.open} target='_self'>
+            <div className='card__btn'>
               <div></div>
               <div></div>
               <div></div>
             </div>
           </a>
         </div>
-        <div class='card__content'>
+        <div className='card__content'>
           <a href='' target='_blank'>
-            <h3 class='card__title'>Название задачи</h3>
+            {/* название */}
+            <h3 className='card__title'>{title}</h3>
           </a>
-          <div class='card__date'>
+          <div className='card__date'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               width='13'
@@ -49,10 +63,12 @@ const Card = () => {
                 </clipPath>
               </defs>
             </svg>
-            <p>30.10.23</p>
+            <p>{date}</p>
           </div>
         </div>
       </div>
+
+      <PopBrowse isOpen={popBrowse.isOpen} onClose={popBrowse.close} />
     </div>
   );
 };
