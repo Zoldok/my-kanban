@@ -1,22 +1,23 @@
 import Card from '../Card/Card';
 import tasks from '../../task';
+import * as S from './Column.styled';
 
 const Column = ({ status }) => {
   const filterTasks = tasks.filter((task) => task.status === status);
 
   return (
-    <div class="main__column column">
-      <div class="column__title">
+    <S.ColumnWrapper className="column">
+      <S.ColumnTitle>
         <p>{status}</p>
-      </div>
-      <div class="cards">
+      </S.ColumnTitle>
+      <S.Cards>
         {/* компонент */}
         {/* <Card /> */}
         {filterTasks.map((task) => (
           <Card key={task.id} task={task} />
         ))}
-      </div>
-    </div>
+      </S.Cards>
+    </S.ColumnWrapper>
   );
 };
 

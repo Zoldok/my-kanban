@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Column from './Column/Column';
+import * as S from './Main.styled';
 
 const Main = () => {
   const STATUSES = ['No Status', 'To Do', 'In Progress', 'Testing', 'Done'];
@@ -11,22 +12,22 @@ const Main = () => {
   }, 3000);
 
   return (
-    <main class='main'>
-      <div class='container'>
-        <div class='main__block'>
+    <S.Main>
+      <div class="container">
+        <S.MainBlock>
           {loading ? (
-            <div className='preloader'>Данные загружаются...</div>
+            <div className="preloader">Данные загружаются...</div>
           ) : (
-            <div class='main__content'>
+            <S.MainContent>
               {/* рендерим колонки по статусам */}
               {STATUSES.map((status) => (
                 <Column key={status} status={status} />
               ))}
-            </div>
+            </S.MainContent>
           )}
-        </div>
+        </S.MainBlock>
       </div>
-    </main>
+    </S.Main>
   );
 };
 
