@@ -335,6 +335,7 @@ body {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  gap: 20px;
 }
 .pop-new-card__form {
   max-width: 370px;
@@ -382,6 +383,7 @@ body {
   max-width: 370px;
   margin-top: 14px;
   height: 200px;
+  resize: none;
 }
 .form-new__create {
   width: 132px;
@@ -865,8 +867,6 @@ body {
 }
 
 @media screen and (max-width: 1200px) {
-
-
   .cards__card {
     width: 220px;
     height: 130px;
