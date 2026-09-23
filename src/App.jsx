@@ -10,13 +10,15 @@ import PopNewCard from './components/Popup/PopNewCard';
 import Main from './components/Main';
 import PopupExit from './components/Popup/PopupExit';
 import { usePopup } from './assets/hooks/usePopup';
+import { GlobalStyle } from './GlobalStyle';
 
 function App() {
   // // const [openPopupUser, setOpenPopupUser] = useState(false);
   // const popupNewCard = usePopup();
   return (
     <>
-      <div className='wrapper'>
+      <GlobalStyle />
+      <div className="wrapper">
         {/* <!-- pop-up start--> */}
 
         <PopBrowse />
